@@ -22,7 +22,7 @@ The original requirement identifiers are preserved in `research/requirements.md`
 
 ## Repository structure
 
-- `references/` - source documents supplied for the project
+- `paper/` - source documents supplied for the project
 - `research/` - research notes, sources, requirement tracking, and future evidence
 - `report/` - LaTeX report source and related figures when they are developed
 
