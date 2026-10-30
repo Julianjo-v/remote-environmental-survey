@@ -23,11 +23,11 @@
 {\Large\bfseries Remote Environmental Survey and Mapping of an Unseen Room}\\[3pt]
 {\large Stage 1 Research Draft --- Work in Progress}\\[4pt]
 Julian Joseph Amaro \quad Project I (247-519-VA) \quad Vanier College\\
-October 23, 2026
+October 30, 2026
 \end{center}
 
 \noindent\fbox{\parbox{0.96\linewidth}{
-\textbf{Draft status.} This document records the research and project information available so far. It is not a claim that the rover has passed its requirements. No project-specific performance test has yet been recorded. The bill of materials and cost plan are intentionally excluded because they are separate Week 4 work.
+\textbf{Draft status.} This document records the research and project information available so far. It is not a claim that the rover has passed its requirements. A Version 1 subsystem test on the exact watch demonstrated basic Wi-Fi scanning and display output, but it did not test rover communication, the survey map, summary delivery, or the 5 s requirement. The bill of materials and cost plan are intentionally excluded because they are separate Week 4 work.
 }}
 
 \section*{1. Change Log}
@@ -86,7 +86,7 @@ Claims begin at C6 because C1--C5 already identify watch constraints in the froz
 \toprule
 ID & Tests & Claim and present evidence & Class / source & Status \\
 \midrule
-C6 & RS-06, RS-09 & The required watch has a 410 by 502 AMOLED touch display, ESP32-S3R8, 8 MB PSRAM, 32 MB flash, Wi-Fi b/g/n, and BLE 5. These documented capabilities make a compact map and survey-summary interface plausible, but the project UI and 5 s transfer are untested. & Documented specifications; L-02 \cite{waveshare,espressif} & \partialstatus \\
+C6 & RS-06, RS-09 & The exact watch ran a Version 1 Wi-Fi scan and displayed nearby network names, signal strengths, and channels. Source code and photos record this basic radio/display result. The radio is documented as 2.4 GHz b/g/n only. The revised pagination, survey UI, map, connection, and 5 s transfer remain untested. & Measured subsystem test, L-04.1; documented band limit, L-04.2 \cite{waveshare,espressif} & \partialstatus \\
 C7 & RS-03, RS-04 & The BME688 documents temperature, humidity, pressure, and broad gas response. It can support a relative anomaly channel, but it is not selective or certified toxic-gas detection. & Documented research; L-02, L-03 \cite{bosch} & \partialstatus \\
 C8 & RS-04 & Public BME688 projects demonstrate logging and experimental classification workflows, but no inspected public data set covered methane, propane/butane, CO, and H$_2$S together. No published result was reproduced. & Literature/repository review; L-05 & \openstatus \\
 C9 & RS-05 & The tracked tank may provide a mechanical base, but its encoder integration, payload capacity, track slip, and mapping accuracy are not established for this project. & Documented/inferred; L-02 & \openstatus \\
@@ -95,7 +95,7 @@ C11 & RS-01--RS-10 & The integrated rover can meet the complete requirement set.
 \bottomrule
 \end{tabularx}
 
-The research supports technical plausibility, not requirement compliance. In particular, no 2 m drive, video-latency test, mapping trial, BME688 bench test, watch-transfer timing, power test, or clean build has been completed. Vendor specifications are documented evidence about components, not measured project results.
+The research supports technical plausibility, not requirement compliance. The measured Version 1 watch result supports basic Wi-Fi scanning and display operation only. No 2 m drive, video-latency test, mapping trial, BME688 bench test, watch connection or transfer timing, power test, or clean-copy one-command build has been completed. The revised seven-network pagination also awaits physical retesting. Vendor specifications remain component evidence, not measured integrated-system results.
 
 \section*{4. Baselined Requirements}
 
@@ -108,17 +108,17 @@ REQ-RS-02 & Display live phone video with latency at most 1 s; supports obstacle
 REQ-RS-03 & Map at least three tagged temperature, humidity, and relative-gas records; demonstrates spatial variation. & Partly supported: sensor capability documented; integration open. \\
 REQ-RS-04 & Flag a potential anomaly at 125\% or more of baseline; this is a relative indicator, not a safety limit. & Partly supported: rule defined; implementation and sensor behaviour open. \\
 REQ-RS-05 & Map walls within $\pm$10 cm in at least four of five runs; preserves the proposal accuracy target. & Open: highest-priority mapping test pending. \\
-REQ-RS-06 & Deliver the completed summary to the watch within 5 s; provides portable results. & Partly supported: radio capability documented; transfer time open. \\
+REQ-RS-06 & Deliver the completed summary to the watch within 5 s; provides portable results. & Partly supported: basic scanning/display measured; connection, summary transfer, and timing open. \\
 REQ-RS-07 & Keep total hardware cost at or below CAD \$700; stakeholder constraint N7. & Open: cost work is separate and excluded here. \\
-REQ-RS-08 & Build firmware from a clean copy using one documented command; supports reproducibility. & Open: clean-build demonstration pending. \\
-REQ-RS-09 & Use the exact Waveshare watch to display the map, summary, and anomaly indications. & Partly supported: hardware is suitable in principle; UI unbuilt. \\
+REQ-RS-08 & Build firmware from a clean copy using one documented command; supports reproducibility. & Open: Version 1 compiled once, but a clean-copy one-command build remains unverified. \\
+REQ-RS-09 & Use the exact Waveshare watch to display the map, summary, and anomaly indications. & Partly supported: graphics and scan results were demonstrated; the survey map, summary, anomaly display, and transfer remain open. \\
 REQ-RS-10 & Include a custom PCB in the final system; breadboard/modules alone are insufficient for the final build. & Open: binding plan; PCB not yet designed or built. \\
 \bottomrule
 \end{tabularx}
 
 \section*{5. Risk Register}
 
-The following are the present research-backed risks. Probability and consequence scores are not assigned yet because no measured project evidence supports a defensible ranking. The required $P=p\times c$ matrix remains open.
+The following are the present research-backed risks. Probability and consequence scores are not assigned yet because the available measured evidence covers only the basic watch subsystem and does not support a defensible full-system ranking. The required $P=p\times c$ matrix remains open.
 
 \begin{tabularx}{\linewidth}{>{\bfseries}p{0.06\linewidth}X X}
 \toprule
@@ -126,16 +126,17 @@ ID & \textbf{Risk, assumption, and consequence} & \textbf{Evidence needed and mi
 \midrule
 R1 & Wheel slip and range noise may exceed the 10 cm error limit. Assumes odometry and ranging remain repeatable on the selected chassis. Failure would make wall and reading locations unreliable. & Five mapping runs against eight tape-measured points. Calibrate geometry, reduce speed, add encoders/ranging, or change mapping method. \\
 R2 & BME688 response may drift with humidity or be too slow for brief stops. Assumes a stable relative baseline. Failure could produce misleading anomaly indications. & Controlled safe baseline, warm-up, humidity, dwell-time, and repeatability tests. Keep claims relative and change the sensor or sampling method if needed. \\
-R3 & Doorway wireless traffic may delay phone video or the watch summary. Assumes the available 2.4 GHz links coexist under load. Failure would affect REQ-RS-02 and REQ-RS-06. & Measure video and summary delivery together. Reduce data rate, buffer/resend, or test a phone-mediated path. \\
+R3 & Doorway wireless traffic may delay phone video or the watch summary. Basic 2.4 GHz scanning works, but connection, coexistence under video load, and delivery timing are untested. Failure would affect REQ-RS-02 and REQ-RS-06. & Confirm a 2.4 GHz access point, then measure video and summary delivery together. Reduce data rate, buffer/resend, or test a phone-mediated path. \\
 R4 & The selected controller architecture may not meet processing, timing, thermal, or power needs. & Calculate the power/load budget and prototype the two highest-load functions before selection. Use divided control if centralized timing is inadequate. \\
+R5 & Text near the rounded screen edge or too many list rows may clip or overlap. The Version 1 test exposed this usability risk; the revised seven-row pagination is not yet physically verified. & Retest every page on the watch in black-and-white-readable layouts and preserve safe margins before designing the survey screen. \\
 \bottomrule
 \end{tabularx}
 
 \section*{6. Gate 1 Readiness}
 
-The current research supports a \textbf{preliminary proceed-with-conditions} position. Official documentation supports the watch as a compact wireless display, and the BME688 can support environmental readings and a relative anomaly channel. Research also identifies important limits: the BME688 cannot certify safety or selectively identify household toxic gases, the tracked tank is not yet proven as a mapping platform, and the Pi Zero 2 W architecture has not been selected or validated.
+The current research supports a \textbf{preliminary proceed-with-conditions} position. A measured Version 1 test on the exact watch demonstrated basic 2.4 GHz Wi-Fi scanning and AMOLED display output, while official documentation defines the radio and hardware limits. This supports the feasibility of a compact wireless display subsystem, but it does not demonstrate connection to the rover, a survey map or summary, anomaly indications, or delivery within 5 s. Research also identifies important limits: the BME688 cannot certify safety or selectively identify household toxic gases, the tracked tank is not yet proven as a mapping platform, and the Pi Zero 2 W architecture has not been selected or validated.
 
-The conditions are to fix and log the concept-selection criteria and weights, score the two architectures, select the controller structure, bench-test the BME688, measure mapping accuracy, video latency and watch delivery, verify a clean build, and calculate the power/current budget. Until those steps are complete, every performance requirement remains open or partly supported.
+The conditions are to physically retest the revised watch pagination, implement and test the survey map and summary transfer, measure watch delivery and video latency together, and verify a clean-copy one-command build. The project must also fix and log the concept-selection criteria and weights, score the two architectures, select the controller structure, bench-test the BME688, measure mapping accuracy, and calculate the power/current budget. Until those steps are complete, every performance requirement remains open or partly supported.
 
 \begin{thebibliography}{9}
 \small
