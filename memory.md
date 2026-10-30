@@ -133,6 +133,14 @@ The following should not be assumed without a new decision and supporting tests:
   two images, renaming `ESP32_WIFITEST.c` to `src/main.cpp`, and removing
   `src/.gitkeep`. The build remains unverified because the ESP32-S3 Arduino CLI
   compile stalled and was stopped without producing a result.
+- 2026-10-30 — The GITHUB REPO agent pushed commit
+  `d4ff6d1651171a2199453466b2cba012c46ff9ed` to `origin/main`, with the remote
+  state verified. It moved the watch code to the repository-root
+  `src/main.cpp` and `src/pin_config.h`, moved the documentation and images to
+  `docs/watch-wifi/`, and removed all `watch-tests/` paths while preserving the
+  moved files' hashes and content. The root `src/` and `docs/watch-wifi/`
+  locations are now current; earlier `watch-tests/` references above are
+  retained only as historical milestone records.
 
 ## Stage 1 Concept and Feasibility Report Guide
 
