@@ -1,6 +1,13 @@
-# ESP32 Watch Wi-Fi Scan Test
+# Version 1: ESP32 Watch Wi-Fi Scan Test
 
-This test checks that the Waveshare ESP32-S3-Touch-AMOLED-2.06 can scan for nearby Wi-Fi networks and show the results on its AMOLED screen.
+This directory documents Version 1 of the watch Wi-Fi test. The basic code in
+`src/watch_wifi_scan_test.cpp` checks that the Waveshare
+ESP32-S3-Touch-AMOLED-2.06 can scan for nearby Wi-Fi networks and show the
+results on its AMOLED screen.
+
+The photos below are evidence from this first version, before later
+SquareLine Studio and LVGL user-interface work. That later user interface is
+not included in this repository.
 
 ## What the code does
 
@@ -11,9 +18,9 @@ This test checks that the Waveshare ESP32-S3-Touch-AMOLED-2.06 can scan for near
 5. Automatically changes pages every five seconds and starts a new scan after the last page.
 6. Prints the same scan details to the USB Serial Monitor.
 
-![Watch scanning for Wi-Fi](images/wifi-scanning-screen.png)
+![Version 1 watch scanning for Wi-Fi](images/v1-wifi-scanning-screen.png)
 
-![Wi-Fi scan results displayed on the watch](images/wifi-scan-results.png)
+![Version 1 Wi-Fi scan results displayed on the watch](images/v1-wifi-scan-results.png)
 
 ## Understanding the output
 
@@ -33,28 +40,31 @@ The ESP32-S3 radio in this watch supports 2.4 GHz Wi-Fi only. It cannot detect o
 - `WiFi.h` comes with the Espressif ESP32 Arduino board package and performs the network scan.
 - `Arduino_GFX_Library.h` is the Waveshare-provided Arduino_GFX library used to drive the CO5300 AMOLED display.
 - `HWCDC.h` comes with the ESP32 Arduino board package and provides USB serial output.
-- `pin_config.h` is a local board header containing the display pin numbers, screen size, and other board pin definitions. It is not an Arduino Library Manager package.
+- `src/watch_wifi_scan_test.cpp` contains the Version 1 scan test.
+- `src/pin_config.h` is a local board header containing the display pin numbers, screen size, and other board pin definitions. It is not an Arduino Library Manager package.
 
 ## File structure
 
 ```text
-wifi-connection/
-|-- README.md
-|-- images/
-|   |-- wifi-scan-results.png
-|   `-- wifi-scanning-screen.png
-`-- src/
-    |-- main.cpp
-    `-- pin_config.h
+remote-environmental-survey/
+|-- src/
+|   |-- watch_wifi_scan_test.cpp
+|   `-- pin_config.h
+`-- docs/
+    `-- watch-wifi/
+        |-- README.md
+        `-- images/
+            |-- v1-wifi-scan-results.png
+            `-- v1-wifi-scanning-screen.png
 ```
 
 ## Basic Arduino IDE use
 
 1. Install the Espressif ESP32 board package in Arduino IDE.
 2. Install the Waveshare version of Arduino_GFX supplied with the official ESP32-S3-Touch-AMOLED-2.06 examples.
-3. Create an Arduino sketch and copy the contents of `src/main.cpp` into the sketch's `.ino` file.
+3. Create an Arduino sketch and copy the contents of `src/watch_wifi_scan_test.cpp` into the sketch's `.ino` file.
 4. Copy `src/pin_config.h` into the same sketch folder.
 5. Select `ESP32S3 Dev Module`, the watch's COM port, OPI PSRAM, and the correct flash settings for the board.
 6. Upload the sketch. Open Serial Monitor at 115200 baud to see the full scan results.
 
-The stored `src/main.cpp` name also makes the same source suitable for a normal `src`-based embedded project layout.
+The root `src/` directory keeps the Version 1 scan source and its board header together for later project integration.
