@@ -141,6 +141,14 @@ The following should not be assumed without a new decision and supporting tests:
   moved files' hashes and content. The root `src/` and `docs/watch-wifi/`
   locations are now current; earlier `watch-tests/` references above are
   retained only as historical milestone records.
+- 2026-10-30 — The GITHUB REPO agent pushed commit
+  `36ada56def9075cb8dac3584b41aae9a9d0fe2b5` to `origin/main` and remotely
+  verified it. The current basic Version 1 watch Wi-Fi scan source is
+  `src/watch_wifi_scan_test.cpp`, its documentation is
+  `docs/watch-wifi/README.md`, and its image filenames use `v1-` prefixes. The
+  README explicitly identifies this as the historical/basic scanner and
+  distinguishes it from later SquareLine/LVGL UI work, which is not included
+  in the repository.
 
 ## Stage 1 Concept and Feasibility Report Guide
 
