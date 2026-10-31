@@ -6,8 +6,12 @@ not overwrite or silently redefine the earlier evidence.
 
 ## Version 1: basic Wi-Fi scanner
 
-- `watch_wifi_scan_test.cpp` is the basic Arduino_GFX scanner.
-- `pin_config.h` contains its board pin and display definitions.
+- [`version-1-basic-wifi/`](version-1-basic-wifi/) preserves the historical
+  basic scanner and its setup notes.
+- [`version-1-basic-wifi/watch_wifi_scan_test.cpp`](version-1-basic-wifi/watch_wifi_scan_test.cpp)
+  is the basic Arduino_GFX scanner.
+- [`version-1-basic-wifi/pin_config.h`](version-1-basic-wifi/pin_config.h)
+  contains its board pin and display definitions.
 - It scans nearby 2.4 GHz networks and displays SSID, RSSI, and channel results
   in automatically changing pages.
 - Version 1 documentation and photos are in [`../../photos/`](../../photos/).

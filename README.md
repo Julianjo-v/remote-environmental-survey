@@ -32,7 +32,7 @@ the final custom-PCB requirement.
   bytes (34%) of global memory, leaving 214,688 bytes. Its 1,223,712-byte binary
   has SHA-256 `0BB18CE51CBFF62930D69B09DE29FA36F207B979F052ED6290AAF53D2D5C6CB5`.
 - Version 1 remains preserved as the earlier basic scan/display test under
-  [`src/watch/`](src/watch/).
+  [`src/watch/version-1-basic-wifi/`](src/watch/version-1-basic-wifi/).
 - The current Stage 1 Concept and Feasibility Report was compiled and verified
   as a four-page PDF:
   [report source and PDF](paper/stage-1-concept-and-feasibility-report/).
@@ -56,6 +56,7 @@ the required watch, and the final custom PCB.
 ## Watch Version 1 and Version 2 tests
 
 - [Watch source and evidence limits](src/watch/README.md)
+- [Version 1 basic Wi-Fi source package](src/watch/version-1-basic-wifi/)
 - [Version 2 SquareLine/LVGL source package](src/watch/version-2-squareline-wifi/)
 - [Research photos and test notes](photos/README.md)
 - [V2 searching-state photo](photos/images/v2-squareline-wifi-searching.png)
@@ -86,7 +87,8 @@ clean one-command build of the full integrated system.
 - [`photos/`](photos/) — Version 1 and Version 2 watch research photos and explanation.
 - [`research/`](research/) — sources, research notes, and requirement tracking.
 - [`src/`](src/) — project source-code organization.
-- [`src/watch/`](src/watch/) — Version 1 watch firmware and the Version 2 package.
+- [`src/watch/`](src/watch/) — index for the preserved watch prototypes.
+- [`src/watch/version-1-basic-wifi/`](src/watch/version-1-basic-wifi/) — preserved historical basic Wi-Fi scan/display source.
 - [`src/watch/version-2-squareline-wifi/`](src/watch/version-2-squareline-wifi/) — preserved SquareLine/LVGL Wi-Fi scan interface source package.
 - [`src/rover/`](src/rover/) — placeholder for future rover code; no rover implementation is present yet.
 

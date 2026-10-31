@@ -5,7 +5,8 @@ on the Waveshare ESP32-S3-Touch-AMOLED-2.06.
 
 ## Version 1: basic Arduino_GFX scanner
 
-The basic source in `src/watch/watch_wifi_scan_test.cpp` scans nearby 2.4 GHz
+The basic source in
+`src/watch/version-1-basic-wifi/watch_wifi_scan_test.cpp` scans nearby 2.4 GHz
 networks and displays SSID, RSSI, and channel information in paged results.
 
 ### What Version 1 does
@@ -65,8 +66,8 @@ The ESP32-S3 radio in this watch supports 2.4 GHz Wi-Fi only. It cannot detect o
 - `WiFi.h` comes with the Espressif ESP32 Arduino board package and performs the network scan.
 - `Arduino_GFX_Library.h` is the Waveshare-provided Arduino_GFX library used to drive the CO5300 AMOLED display.
 - `HWCDC.h` comes with the ESP32 Arduino board package and provides USB serial output.
-- `src/watch/watch_wifi_scan_test.cpp` contains the Version 1 scan test.
-- `src/watch/pin_config.h` is a local board header containing the display pin numbers, screen size, and other board pin definitions. It is not an Arduino Library Manager package.
+- `src/watch/version-1-basic-wifi/watch_wifi_scan_test.cpp` contains the Version 1 scan test.
+- `src/watch/version-1-basic-wifi/pin_config.h` is a local board header containing the display pin numbers, screen size, and other board pin definitions. It is not an Arduino Library Manager package.
 - `src/watch/version-2-squareline-wifi/` contains the Version 2 sketch,
   SquareLine/LVGL sources, local configuration, and full dependency inventory.
 
@@ -76,8 +77,10 @@ The ESP32-S3 radio in this watch supports 2.4 GHz Wi-Fi only. It cannot detect o
 remote-environmental-survey/
 |-- src/
 |   `-- watch/
-|       |-- watch_wifi_scan_test.cpp
-|       |-- pin_config.h
+|       |-- version-1-basic-wifi/
+|       |   |-- README.md
+|       |   |-- watch_wifi_scan_test.cpp
+|       |   `-- pin_config.h
 |       `-- version-2-squareline-wifi/
 `-- photos/
     |-- README.md
@@ -92,8 +95,8 @@ remote-environmental-survey/
 
 1. Install the Espressif ESP32 board package in Arduino IDE.
 2. Install the Waveshare version of Arduino_GFX supplied with the official ESP32-S3-Touch-AMOLED-2.06 examples.
-3. Create an Arduino sketch and copy the contents of `src/watch/watch_wifi_scan_test.cpp` into the sketch's `.ino` file.
-4. Copy `src/watch/pin_config.h` into the same sketch folder.
+3. Create an Arduino sketch and copy the contents of `src/watch/version-1-basic-wifi/watch_wifi_scan_test.cpp` into the sketch's `.ino` file.
+4. Copy `src/watch/version-1-basic-wifi/pin_config.h` into the same sketch folder.
 5. Select `ESP32S3 Dev Module`, the watch's COM port, OPI PSRAM, and the correct flash settings for the board.
 6. Upload the sketch. Open Serial Monitor at 115200 baud to see the full scan results.
 
