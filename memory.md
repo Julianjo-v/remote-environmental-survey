@@ -115,8 +115,9 @@ The following should not be assumed without a new decision and supporting tests:
 
 - Official documentation supports the watch's suitability as a compact wireless display and user interface.
 - Project-specific basic Version 1 watch firmware is recorded at
-  `src/watch/watch_wifi_scan_test.cpp`, and measured Wi-Fi scan/display evidence
-  is incorporated into the Stage 1 report.
+  `src/watch/version-1-basic-wifi/watch_wifi_scan_test.cpp` and
+  `src/watch/version-1-basic-wifi/pin_config.h`, and measured Wi-Fi scan/display
+  evidence is incorporated into the Stage 1 report.
 - Version 2 SquareLine/LVGL source, documentation, and runtime photos are in
   `src/watch/version-2-squareline-wifi/` and `photos/images/v2*`. The exact
   tested source, packaged source, and reference-source hashes match, and a
@@ -197,6 +198,14 @@ The following should not be assumed without a new decision and supporting tests:
   verified four-page PDF. The remote tag `v1.0.0-stage1` was observed pointing
   to earlier commit `f6d8f99445f569d698d6b160f4b7fc17349e9e61`, so that tag excludes Version 2;
   no tag change was authorized or performed.
+- 2026-10-31 — The GITHUB REPO agent pushed commit
+  `99c813eb06bb704fd0fe00b3ba962db0087ca4c6` to `origin/main` and remotely
+  verified it. Version 1 was placed in sibling directory
+  `src/watch/version-1-basic-wifi/` beside unchanged Version 2; the exact source
+  and header hashes and blobs were unchanged, and documentation links were
+  updated. This was an organization-only change with no firmware-content change
+  or new build claim. The remote tag `v1.0.0-stage1` remains unchanged at
+  `f6d8f99445f569d698d6b160f4b7fc17349e9e61`.
 
 ## Stage 1 Concept and Feasibility Report Guide
 
