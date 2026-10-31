@@ -1,19 +1,14 @@
-# Research Photos: Version 1 ESP32 Watch Wi-Fi Scan Test
+# Research Photos: ESP32 Watch Wi-Fi Prototypes
 
-This directory stores research photos and documentation for Version 1 of the
-watch Wi-Fi test. The basic code in
-`src/watch/watch_wifi_scan_test.cpp` checks that the Waveshare
-ESP32-S3-Touch-AMOLED-2.06 can scan for nearby Wi-Fi networks and show the
-results on its AMOLED screen.
+This directory stores physical-watch photos for two Wi-Fi interface versions
+on the Waveshare ESP32-S3-Touch-AMOLED-2.06.
 
-The photos below are evidence from this first version, before later
-SquareLine Studio and LVGL user-interface work. The user reports that the later
-graphical interface ran successfully on the physical watch with a touch switch
-that started scanning and a scrollable, clickable network list. Those later
-runtime artifacts and source files are not currently included in this
-repository, so the photos here remain Version 1 evidence only.
+## Version 1: basic Arduino_GFX scanner
 
-## What the code does
+The basic source in `src/watch/watch_wifi_scan_test.cpp` scans nearby 2.4 GHz
+networks and displays SSID, RSSI, and channel information in paged results.
+
+### What Version 1 does
 
 1. Starts the AMOLED display.
 2. Puts the ESP32-S3 Wi-Fi radio in station mode.
@@ -26,11 +21,37 @@ repository, so the photos here remain Version 1 evidence only.
 
 ![Version 1 Wi-Fi scan results displayed on the watch](images/v1-wifi-scan-results.png)
 
-## Understanding the output
+## Version 2: SquareLine/LVGL touch interface
+
+Version 2 is packaged in
+`src/watch/version-2-squareline-wifi/`. The user reports that it was flashed to
+and run on the physical watch. The photos below show the enabled touch switch,
+the asynchronous searching state, and five results displayed as a scrollable
+LVGL button list.
+
+![Version 2 SquareLine/LVGL interface searching on the physical watch](images/v2-squareline-wifi-searching.png)
+
+![Version 2 SquareLine/LVGL Wi-Fi results displayed on the physical watch](images/v2-squareline-wifi-scan-results.png)
+
+Version 2 displays up to 24 results, including RSSI and channel, and lets the
+user touch a result to select it. This is physical subsystem evidence, not
+evidence that the final rover link, survey map, environmental summary, anomaly
+indicator, or five-second delivery is complete.
+
+The preserved V2 source package also passed a fresh isolated Arduino CLI build
+using the documented board target, dependencies, and command. The tested
+original sketch, packaged sketch, and reference copy have matching hashes. This
+verifies the V2 subsystem package build, not the clean build of the future
+integrated rover/watch firmware required by REQ-RS-08.
+
+## Understanding the Wi-Fi output
 
 - `Found` is the total number of networks detected during the scan.
 - `Page` shows the current results page and the total number of pages.
-- The network name is the SSID. A network that does not broadcast its name appears as `<hidden>`.
+- The network name is the SSID. A network that does not broadcast its name
+  appears as `<hidden>`. Hidden access points omit the SSID from the beacon
+  information used by passive scans, so the watch cannot recover that name
+  without the SSID being supplied or learned through an authorized connection.
 - `dBm` is received signal strength. A value closer to 0 is stronger. The display uses green for strong signals, yellow for medium signals, and red for weak signals.
 - `CH` is the 2.4 GHz Wi-Fi channel used by the network.
 
@@ -46,6 +67,8 @@ The ESP32-S3 radio in this watch supports 2.4 GHz Wi-Fi only. It cannot detect o
 - `HWCDC.h` comes with the ESP32 Arduino board package and provides USB serial output.
 - `src/watch/watch_wifi_scan_test.cpp` contains the Version 1 scan test.
 - `src/watch/pin_config.h` is a local board header containing the display pin numbers, screen size, and other board pin definitions. It is not an Arduino Library Manager package.
+- `src/watch/version-2-squareline-wifi/` contains the Version 2 sketch,
+  SquareLine/LVGL sources, local configuration, and full dependency inventory.
 
 ## File structure
 
@@ -54,12 +77,15 @@ remote-environmental-survey/
 |-- src/
 |   `-- watch/
 |       |-- watch_wifi_scan_test.cpp
-|       `-- pin_config.h
+|       |-- pin_config.h
+|       `-- version-2-squareline-wifi/
 `-- photos/
     |-- README.md
     `-- images/
         |-- v1-wifi-scan-results.png
-        `-- v1-wifi-scanning-screen.png
+        |-- v1-wifi-scanning-screen.png
+        |-- v2-squareline-wifi-scan-results.png
+        `-- v2-squareline-wifi-searching.png
 ```
 
 ## Basic Arduino IDE use
@@ -71,5 +97,5 @@ remote-environmental-survey/
 5. Select `ESP32S3 Dev Module`, the watch's COM port, OPI PSRAM, and the correct flash settings for the board.
 6. Upload the sketch. Open Serial Monitor at 115200 baud to see the full scan results.
 
-The `src/watch/` directory keeps the Version 1 scan source and its board header
-together for later project integration.
+See `src/watch/README.md` for the boundary between Version 1, Version 2, and the
+still-unfinished final watch functions.

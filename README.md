@@ -17,22 +17,29 @@ the final custom-PCB requirement.
 
 ## Current verified progress
 
-- Version 1 watch firmware was physically tested on the required Waveshare
-  watch. It scanned nearby 2.4 GHz Wi-Fi networks and displayed network names,
-  signal strength, and channel information on the AMOLED screen.
-- The Version 1 source is stored in
-  [`src/watch/`](src/watch/), and its test photos are documented in
-  [`photos/`](photos/).
+- Version 2 watch firmware was flashed and run on the required Waveshare watch.
+  The SquareLine/LVGL interface responded to its touch switch, showed a
+  `SEARCHING` state, reported `FOUND 5`, and presented a scrollable results list
+  containing SSID, RSSI, and channel information. The two physical-watch photos
+  are measured subsystem evidence.
+- The Version 2 source package is preserved in
+  [`src/watch/version-2-squareline-wifi/`](src/watch/version-2-squareline-wifi/),
+  and the V1/V2 test photos are stored under [`photos/images/`](photos/images/).
+- A fresh isolated Arduino CLI build of the packaged V2 sketch succeeded using
+  the documented board target and dependencies. The tested original sketch,
+  packaged sketch, and reference C++ copy have matching hashes. The build used
+  1,223,571 bytes (93%) of the 1,310,720-byte program partition and 112,992
+  bytes (34%) of global memory, leaving 214,688 bytes. Its 1,223,712-byte binary
+  has SHA-256 `0BB18CE51CBFF62930D69B09DE29FA36F207B979F052ED6290AAF53D2D5C6CB5`.
+- Version 1 remains preserved as the earlier basic scan/display test under
+  [`src/watch/`](src/watch/).
 - The current Stage 1 Concept and Feasibility Report was compiled and verified
   as a four-page PDF:
   [report source and PDF](paper/stage-1-concept-and-feasibility-report/).
 
-The user also reports that a later SquareLine Studio/LVGL graphical Wi-Fi
-interface ran successfully on the physical watch. Its implementation was
-inspected locally and included a touch switch plus a scrollable, clickable
-network list. The later source, runtime artifacts, and a clean repository build
-are not currently preserved here, so this is not claimed as a completed
-repository build or as proof of the final survey interface.
+The V2 package, runtime photos, and subsystem build evidence are preserved.
+This does not prove the final survey interface or the clean build of the future
+integrated rover/watch firmware required by REQ-RS-08.
 
 ## Planned components and architecture
 
@@ -46,14 +53,20 @@ cover remote movement, phone video, tagged environmental readings, relative
 anomaly indication, map accuracy, watch delivery, cost, reproducible builds,
 the required watch, and the final custom PCB.
 
-## Watch Version 1 test
+## Watch Version 1 and Version 2 tests
 
 - [Watch source and evidence limits](src/watch/README.md)
-- [Version 1 research photos and test notes](photos/README.md)
+- [Version 2 SquareLine/LVGL source package](src/watch/version-2-squareline-wifi/)
+- [Research photos and test notes](photos/README.md)
+- [V2 searching-state photo](photos/images/v2-squareline-wifi-searching.png)
+- [V2 scan-results photo](photos/images/v2-squareline-wifi-scan-results.png)
 
-The Version 1 test supports basic watch display and Wi-Fi scanning feasibility.
-It does not prove rover connection, survey-summary transfer, map display,
-five-second delivery, simultaneous video traffic, or a clean one-command build.
+The V1 and V2 tests support watch display, touch-interface, and 2.4 GHz Wi-Fi
+scanning feasibility. A hidden access point does not broadcast its SSID, so a
+passive scan cannot recover its name; the interface should display `<hidden>`.
+These tests do not prove rover connection, survey-summary transfer, map display,
+anomaly indication, five-second delivery, simultaneous video traffic, or a
+clean one-command build of the full integrated system.
 
 ## Open work
 
@@ -62,18 +75,19 @@ five-second delivery, simultaneous video traffic, or a clean one-command build.
 - Bench-test the BME688 as a relative anomaly sensor.
 - Send a completed survey map and tagged readings to the watch and measure delivery time.
 - Verify mapping accuracy, video latency, battery/power behavior, and hardware cost.
-- Produce a clean, documented one-command firmware build.
+- Produce a clean, documented one-command build for the integrated rover/watch firmware.
 - Design and integrate the required final custom PCB.
-- Preserve later SquareLine/LVGL source and runtime evidence in the repository.
+- Monitor and reduce watch program-partition use as the final survey UI is added.
 
 ## Repository structure
 
 - [`paper/`](paper/) — proposal material and the current Stage 1 report.
 - [`paper/stage-1-concept-and-feasibility-report/`](paper/stage-1-concept-and-feasibility-report/) — LaTeX source, verified four-page PDF, and report notes.
-- [`photos/`](photos/) — Version 1 watch research photos and explanation.
+- [`photos/`](photos/) — Version 1 and Version 2 watch research photos and explanation.
 - [`research/`](research/) — sources, research notes, and requirement tracking.
 - [`src/`](src/) — project source-code organization.
-- [`src/watch/`](src/watch/) — current Version 1 watch firmware.
+- [`src/watch/`](src/watch/) — Version 1 watch firmware and the Version 2 package.
+- [`src/watch/version-2-squareline-wifi/`](src/watch/version-2-squareline-wifi/) — preserved SquareLine/LVGL Wi-Fi scan interface source package.
 - [`src/rover/`](src/rover/) — placeholder for future rover code; no rover implementation is present yet.
 
 ## Safety and evidence limits
