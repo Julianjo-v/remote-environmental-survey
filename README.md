@@ -16,15 +16,16 @@ The project does not claim certified gas detection or room-safety certification.
 
 ## Requirements
 
-The original requirement identifiers are preserved in `research/requirements.md`:
+The project requirement identifiers are preserved in `research/requirements.md`:
 
-- REQ-RS-01 through REQ-RS-08
+- REQ-RS-01 through REQ-RS-10
 
 ## Repository structure
 
-- `paper/` - source documents supplied for the project
+- `paper/` - project source documents and the current Stage 1 Concept and Feasibility Report in `paper/stage-1-concept-and-feasibility-report/`
+- `photos/` - research photos and Version 1 watch Wi-Fi/display evidence
 - `research/` - research notes, sources, requirement tracking, and future evidence
-- `report/` - LaTeX report source and related figures when they are developed
+- `src/` - project source code, separated into watch code and a placeholder for future rover code
 
 ## Evidence policy
 
