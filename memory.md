@@ -1,6 +1,6 @@
 # Project Memory
 
-Last updated: 2026-10-23
+Last updated: 2026-10-31
 
 ## Project
 
@@ -114,7 +114,13 @@ The following should not be assumed without a new decision and supporting tests:
 ## Evidence Status
 
 - Official documentation supports the watch's suitability as a compact wireless display and user interface.
-- No project-specific watch firmware, wireless latency, battery life, thermal, readability, or integrated-system result is currently recorded as completed evidence.
+- Project-specific basic Version 1 watch firmware is recorded at
+  `src/watch/watch_wifi_scan_test.cpp`, and measured Wi-Fi scan/display evidence
+  is incorporated into the Stage 1 report.
+- SquareLine/LVGL graphical Wi-Fi interface success is user-reported and was
+  locally inspected, but its later source/runtime artifacts and a clean build
+  are not in this repository. Final map, summary, anomaly, and transfer evidence
+  remains open.
 - No requirement should be marked passed until its planned test is performed and documented.
 
 ## Verified Repository Milestones
@@ -156,6 +162,20 @@ The following should not be assumed without a new decision and supporting tests:
   Version 1 watch Wi-Fi scan/display evidence. SquareLine/LVGL work, rover
   connection, summary/map transfer, five-second delivery, pagination retest,
   and a clean one-command build remain open.
+- 2026-10-31 — The GITHUB REPO agent pushed commit
+  `a2b1affa9c29453ae3d3976854c1d109041e7245` to `origin/main` and remotely
+  verified it. The current structure places Version 1 watch firmware at
+  `src/watch/watch_wifi_scan_test.cpp` and `src/watch/pin_config.h`, research
+  photos in `photos/`, and the Stage 1 Concept and Feasibility Report at
+  `paper/stage-1-concept-and-feasibility-report/` with `main.tex`, `main.pdf`,
+  and `README.md`; the old `report/`, `docs/`, and `stage1-research-draft/`
+  paths were removed. The report PDF was regenerated and verified as four
+  pages after two `pdflatex` passes. SquareLine/LVGL graphical Wi-Fi interface
+  success is user-reported and locally inspected, but its later source/runtime
+  artifacts and clean build are not in this repository, so final map, summary,
+  anomaly, and transfer evidence remains open. Preserved local edits adding
+  REQ-RS-09 and REQ-RS-10 to `research/requirements.md` remain uncommitted and
+  were not part of this commit.
 
 ## Stage 1 Concept and Feasibility Report Guide
 
