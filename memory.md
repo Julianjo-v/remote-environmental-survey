@@ -117,10 +117,17 @@ The following should not be assumed without a new decision and supporting tests:
 - Project-specific basic Version 1 watch firmware is recorded at
   `src/watch/watch_wifi_scan_test.cpp`, and measured Wi-Fi scan/display evidence
   is incorporated into the Stage 1 report.
-- SquareLine/LVGL graphical Wi-Fi interface success is user-reported and was
-  locally inspected, but its later source/runtime artifacts and a clean build
-  are not in this repository. Final map, summary, anomaly, and transfer evidence
-  remains open.
+- Version 2 SquareLine/LVGL source, documentation, and runtime photos are in
+  `src/watch/version-2-squareline-wifi/` and `photos/images/v2*`. The exact
+  tested source, packaged source, and reference-source hashes match, and a
+  physical flash/run is evidenced.
+- A fresh isolated build of the documented Version 2 Arduino CLI package passed:
+  program storage was 1,223,571 bytes (93 percent), global variables were
+  112,992 bytes (34 percent), and 214,688 bytes remained for local variables.
+- Hidden nonbroadcast SSIDs correctly appear as `<hidden>`; a passive scan
+  cannot recover a network name that the access point omits.
+- The final rover link, map, summary, anomaly indication, five-second transfer,
+  and full integrated REQ-RS-08 build remain open.
 - No requirement should be marked passed until its planned test is performed and documented.
 
 ## Verified Repository Milestones
@@ -183,6 +190,13 @@ The following should not be assumed without a new decision and supporting tests:
   and repository structure; all relative links were verified. No tag or release
   was created. Preserved uncommitted research files were excluded from the
   commit.
+- 2026-10-31 — The GITHUB REPO agent pushed commit
+  `1f47779613218d3c0e6bee196dc11b07b659379a` to `origin/main` and remotely
+  verified it. The commit adds the Version 2 SquareLine/LVGL source,
+  documentation, and runtime photos and regenerates the Stage 1 report as a
+  verified four-page PDF. The remote tag `v1.0.0-stage1` was observed pointing
+  to earlier commit `f6d8f99445f569d698d6b160f4b7fc17349e9e61`, so that tag excludes Version 2;
+  no tag change was authorized or performed.
 
 ## Stage 1 Concept and Feasibility Report Guide
 
