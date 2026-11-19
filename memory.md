@@ -213,6 +213,15 @@ The following should not be assumed without a new decision and supporting tests:
 
 ## Stage 1 Concept and Feasibility Report Guide
 
+- 2026-11-19 — The Stage 1 report revision removed the optional Work in
+  Progress subtitle, boxed Draft status, Change Log sentence about no new
+  logbook entry, exact firmware build byte counts, and BOM-separate note. It
+  retained the supporting evidence and required six-section structure.
+- 2026-11-19 — Explain `REQ-RS-09` and `REQ-RS-10` as formalized identifiers for
+  the exact-watch map display and custom-PCB commitments already stated in the
+  proposal; do not present them as newly invented commitments. Before the
+  report is finalized, proofread concept scores and weights, the risk matrix,
+  source/logbook traceability, and acceptance claims against actual evidence.
 - Controlling guide: `C:\Users\Admin\.codex\codex-remote-attachments\01a16923-3535-7040-8fc2-43ef5c422655\2250B23B-48EC-4C37-BD04-EE13AF8CAD26\1-Part_B_Writing_the_Stage_1_Concept_and_Feasibility_Report.pdf`.
 - Submission is an individual, printed, three-to-four-page report with figures legible in black and white.
 - Use the required six-section skeleton: Change Log, Concept Alternatives, Feasibility Case, Baselined Requirements, Risk Register, and Gate 1 Readiness, preceded by the proposal title block.
