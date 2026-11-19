@@ -23,11 +23,11 @@
 {\Large\bfseries Remote Environmental Survey and Mapping of an Unseen Room}\\[3pt]
 {\large Stage 1 Concept and Feasibility Report --- Work in Progress}\\[4pt]
 Julian Joseph Amaro \quad Project I (247-519-VA) \quad Vanier College\\
-October 30, 2026
+November 19, 2026
 \end{center}
 
 \noindent\fbox{\parbox{0.96\linewidth}{
-\textbf{Draft status.} This document records the research and project information available so far. It is not a claim that the rover has passed its requirements. Version 1 and Version 2 subsystem tests on the exact watch demonstrated Wi-Fi scanning and display output. Version 2 physical photos show the touch-controlled SquareLine/LVGL interface in its searching state and displaying a scrollable result list; its source package also passed a fresh isolated Arduino CLI build using the documented target and dependencies. Rover communication, the survey map, summary and anomaly delivery, the 5 s requirement, and the full integrated build remain untested. The bill of materials and cost plan are intentionally excluded because they are separate Week 4 work.
+\textbf{Draft status.} All repository \texttt{src/} code is proof-of-concept (PoC), not a final integrated system. Watch Wi-Fi/UI and standalone photo display, phone-controlled rover travel, and laptop-to-phone video have subsystem evidence. Synthetic simulations exercise REQ-RS-03--05 logic. Exact acceptance tests, the final watch map and summary, custom PCB, and integrated clean build remain open. The bill of materials is separate Week 4 work.
 }}
 
 \section*{1. Change Log}
@@ -46,6 +46,8 @@ Gas interpretation & Clarified that the BME688 is a relative environmental/anoma
 
 A Raspberry Pi Zero 2 W and a 3D-printed tracked tank are candidate components only. Neither is a frozen architecture decision or a verified compatible choice.
 
+The November 19 evidence adds PoC results without changing any requirement threshold or scope; see the dated evidence index. No new numbered logbook entry is claimed for that date.
+
 \section*{2. Concept Alternatives}
 
 Two genuinely different control approaches are under consideration.
@@ -54,7 +56,7 @@ Two genuinely different control approaches are under consideration.
 \toprule
  & \textbf{Alternative A: centralized control} & \textbf{Alternative B: divided control} \\
 \midrule
-Approach & One main computer coordinates video, mapping, sensing, communications, and motor commands through a motor driver. & A main computer handles video, mapping, storage, and communications, while a microcontroller handles motors, encoders, and time-sensitive sensor input. \\
+Method & One main computer coordinates video, mapping, sensing, communications, and motor commands through a motor driver. & A main computer handles video, mapping, storage, and communications, while a microcontroller handles motors, encoders, and time-sensitive sensor input. \\
 Main uncertainty & Whether one processor and operating system can provide sufficiently predictable motor, encoder, video, and mapping behaviour together. & Whether the extra controller, firmware, interfaces, and synchronization are justified by improved real-time control. \\
 Current status & Not scored; Raspberry Pi Zero 2 W remains a candidate. & Not scored; the microcontroller and interface are not selected. \\
 \bottomrule
@@ -86,16 +88,19 @@ Claims begin at C6 because C1--C5 already identify watch constraints in the froz
 \toprule
 ID & Tests & Claim and present evidence & Class / source & Status \\
 \midrule
-C6 & RS-06, RS-09 & The exact watch ran Version 1 and Version 2 Wi-Fi scans. V2 photos show the touch switch enabled, SEARCHING, FOUND 5, and a scrollable SSID/RSSI/channel list. Its preserved package passed a fresh isolated Arduino CLI build; matching hashes connect the tested original sketch, packaged sketch, and reference copy. The build used 1,223,571 bytes (93\%) of its program partition and 112,992 bytes (34\%) of global memory. A hidden access point does not broadcast its SSID, so passive scanning correctly displays \texttt{<hidden>}. The map, summary, anomaly display, rover connection, and 5 s transfer remain untested. & Measured V1/V2 tests; verified isolated V2 build; documented radio behaviour \cite{waveshare,espressif} & \partialstatus \\
+C6 & RS-06, RS-09 & The exact watch ran V1/V2 Wi-Fi scans and the V2 touch list (L-06; photos). The V2 isolated build passed: 1,223,571 bytes (93\%) program, 112,992 bytes (34\%) globals. A standalone phone-to-watch photo upload/display worked per user report (L-08); its redacted repository copy compiled, but was not independently reflashed. The local SquareLine3 combination compiled November 17, but was not physically verified. Final map, survey records, anomaly, and 5 s transfer are open. & Measured V1/V2; reported V3 physical test; verified builds; L-06, L-08, watch PoC \cite{waveshare} & \partialstatus \\
 C7 & RS-03, RS-04 & The BME688 documents temperature, humidity, pressure, and broad gas response. It can support a relative anomaly channel, but it is not selective or certified toxic-gas detection. & Documented research; L-02, L-03 \cite{bosch} & \partialstatus \\
 C8 & RS-04 & Public BME688 projects demonstrate logging and experimental classification workflows, but no inspected public data set covered methane, propane/butane, CO, and H$_2$S together. No published result was reproduced. & Literature/repository review; L-05 & \openstatus \\
 C9 & RS-05 & The tracked tank may provide a mechanical base, but its encoder integration, payload capacity, track slip, and mapping accuracy are not established for this project. & Documented/inferred; L-02 & \openstatus \\
 C10 & RS-01, RS-02, RS-05 & A Pi Zero 2 W may be able to handle video and mapping, but processor load, thermal behaviour, motor-control timing, and power demand have not been calculated or measured for the final architecture. & Assumed; planned calculation and test & \openstatus \\
-C11 & RS-01--RS-10 & The integrated rover can meet the complete requirement set. No integrated hardware test exists yet. & Assumed; tests pending & \openstatus \\
+C11 & RS-01--RS-10 & The full rover--watch system can meet the complete requirement set; no integrated acceptance test exists yet. & Assumed; integrated tests pending & \openstatus \\
+C12 & RS-01 & User reports an ESP32/N20 rover drove farther than 2 m by phone Wi-Fi using \texttt{sketch\_oct31b}. The redacted repository copy compiled (990,415 bytes program); calibrated distance record and outside-room operator position are absent. & Reported physical PoC; repository build; rover V2 record & \partialstatus \\
+C13 & RS-02 & User reports a live laptop/desktop camera feed on a phone; a phone-browser screenshot and Flask/OpenCV source are preserved. A still frame cannot establish motion or delay. Raspberry Pi operation and $\leq$1 s latency are untested. & Reported physical PoC; screenshot/source, camera evidence dated Nov. 19 & \partialstatus \\
+C14 & RS-03--RS-05 & Python simulations generate three synthetic tagged readings, distinguish 124 from 125 at baseline 100, and score eight wall points across five synthetic runs. All 10 software tests passed. No physical sensor or mapping result follows. & Calculated/simulated; simulation package README and outputs & \partialstatus \\
 \bottomrule
 \end{tabularx}
 
-The research supports technical plausibility, not requirement compliance. The measured V1/V2 results support Wi-Fi scanning, display operation, and a touch-controlled result list; the isolated V2 build supports package reproducibility. They do not demonstrate the final survey screen or integrated rover link. No 2 m drive, video-latency test, mapping trial, BME688 bench test, watch connection or transfer timing, power test, or clean-copy one-command build of the integrated system has been completed. Vendor specifications remain component evidence, not measured integrated-system results.
+These PoC results support subsystem feasibility, not complete requirement compliance. The rover distance and live feed are user-reported; the screenshot and code cannot establish the missing acceptance conditions. Simulated 03--05 outputs are synthetic, not rover or sensor measurements. No BME680/BME688 bench trial, physical mapping-accuracy trial, Pi video-latency trial, rover-to-watch survey transfer, or full clean-copy integrated build has been documented.
 
 \section*{4. Baselined Requirements}
 
@@ -103,22 +108,22 @@ The research supports technical plausibility, not requirement compliance. The me
 \toprule
 \textbf{ID} & \textbf{Current requirement and reason} & \textbf{Status} \\
 \midrule
-REQ-RS-01 & Complete a 2 m remotely commanded path with the operator outside the room; demonstrates remote entry. & Open: drive test pending. \\
-REQ-RS-02 & Display live phone video with latency at most 1 s; supports obstacle response. & Open: five timing trials pending. \\
-REQ-RS-03 & Map at least three tagged temperature, humidity, and relative-gas records; demonstrates spatial variation. & Partly supported: sensor capability documented; integration open. \\
-REQ-RS-04 & Flag a potential anomaly at 125\% or more of baseline; this is a relative indicator, not a safety limit. & Partly supported: rule defined; implementation and sensor behaviour open. \\
-REQ-RS-05 & Map walls within $\pm$10 cm in at least four of five runs; preserves the proposal accuracy target. & Open: highest-priority mapping test pending. \\
-REQ-RS-06 & Deliver the completed summary to the watch within 5 s; provides portable results. & Partly supported: V1/V2 scanning and display measured; rover connection, summary transfer, and timing open. \\
+REQ-RS-01 & Complete a 2 m remotely commanded path with the operator outside the room; demonstrates remote entry. & Partly supported: $>2$ m user-reported with rover PoC; measured record and operator position open. \\
+REQ-RS-02 & Display live phone video with latency at most 1 s; supports obstacle response. & Partly supported: laptop/desktop-to-phone stream reported; Pi/rover path and latency open. \\
+REQ-RS-03 & Map at least three tagged temperature, humidity, and relative-gas records; demonstrates spatial variation. & Partly supported: synthetic schema/map passed; physical readings and rover map open. \\
+REQ-RS-04 & Flag a potential anomaly at 125\% or more of baseline; this is a relative indicator, not a safety limit. & Partly supported: synthetic 124/125 boundary passed; sensor and integrated alarm open. \\
+REQ-RS-05 & Map walls within $\pm$10 cm in at least four of five runs; preserves the proposal accuracy target. & Partly supported: synthetic scoring passed; eight-point physical comparison across five runs open. \\
+REQ-RS-06 & Deliver the completed summary to the watch within 5 s; provides portable results. & Partly supported: standalone photo transfer reported; rover summary and timing open. \\
 REQ-RS-07 & Keep total hardware cost at or below CAD \$700; stakeholder constraint N7. & Open: cost work is separate and excluded here. \\
-REQ-RS-08 & Build firmware from a clean copy using one documented command; supports reproducibility. & Open: an isolated clean V2 subsystem build passed with the documented command; the full integrated build remains unverified. \\
-REQ-RS-09 & Use the exact Waveshare watch to display the map, summary, and anomaly indications. & Partly supported: V1/V2 display operation and V2 touch UI were measured; map, summary, anomaly display, and transfer remain open. \\
+REQ-RS-08 & Build firmware from a clean copy using one documented command; supports reproducibility. & Partly supported: PoC builds passed separately; full integrated clean-copy build open. \\
+REQ-RS-09 & Use the exact Waveshare watch to display the map, summary, and anomaly indications. & Partly supported: Wi-Fi/UI and standalone photo display observed; final content and transfer open. \\
 REQ-RS-10 & Include a custom PCB in the final system; breadboard/modules alone are insufficient for the final build. & Open: binding plan; PCB not yet designed or built. \\
 \bottomrule
 \end{tabularx}
 
 \section*{5. Risk Register}
 
-The following are the present research-backed risks. Probability and consequence scores are not assigned yet because the available measured evidence covers only the basic watch subsystem and does not support a defensible full-system ranking. The required $P=p\times c$ matrix remains open.
+These risks have changed with the new PoC evidence, but probability/consequence scores were not predeclared or logged. The required $P=p\times c$ ranking and matrix remain an explicit Gate 1 gap.
 
 \begin{tabularx}{\linewidth}{>{\bfseries}p{0.06\linewidth}X X}
 \toprule
@@ -126,17 +131,17 @@ ID & \textbf{Risk, assumption, and consequence} & \textbf{Evidence needed and mi
 \midrule
 R1 & Wheel slip and range noise may exceed the 10 cm error limit. Assumes odometry and ranging remain repeatable on the selected chassis. Failure would make wall and reading locations unreliable. & Five mapping runs against eight tape-measured points. Calibrate geometry, reduce speed, add encoders/ranging, or change mapping method. \\
 R2 & BME688 response may drift with humidity or be too slow for brief stops. Assumes a stable relative baseline. Failure could produce misleading anomaly indications. & Controlled safe baseline, warm-up, humidity, dwell-time, and repeatability tests. Keep claims relative and change the sensor or sampling method if needed. \\
-R3 & Doorway wireless traffic may delay phone video or the watch summary. Basic 2.4 GHz scanning works, but connection, coexistence under video load, and delivery timing are untested. Failure would affect REQ-RS-02 and REQ-RS-06. & Confirm a 2.4 GHz access point, then measure video and summary delivery together. Reduce data rate, buffer/resend, or test a phone-mediated path. \\
+R3 & Doorway wireless traffic may delay phone video or the watch summary. A laptop-to-phone feed and watch PoC transfer were reported separately; rover/Pi video and simultaneous watch delivery are untested. Failure would affect REQ-RS-02 and REQ-RS-06. & Measure video latency and summary delivery together across the doorway; then reduce data rate, buffer/resend, or test a phone-mediated path. \\
 R4 & The selected controller architecture may not meet processing, timing, thermal, or power needs. & Calculate the power/load budget and prototype the two highest-load functions before selection. Use divided control if centralized timing is inadequate. \\
-R5 & The final watch UI may exceed screen or program limits. V2 supports scrolling, but not the final survey layout, and its build already uses 93\% of the program partition. & Test the map, summary, and anomaly screens with safe margins; track build size and reduce assets/features or adjust the approved partition plan if needed. \\
+R5 & The final watch UI may exceed screen or program limits. V2 supports scrolling but uses 93\% of its selected app partition; a standalone V3 photo build used a different, larger partition. Neither demonstrates the final survey layout. & Flash and test combined map, summary, and anomaly screens; track app size under one stated partition plan and simplify assets if needed. \\
 \bottomrule
 \end{tabularx}
 
 \section*{6. Gate 1 Readiness}
 
-The current research supports a \textbf{preliminary proceed-with-conditions} position. Measured V1/V2 tests on the exact watch demonstrated 2.4 GHz Wi-Fi scanning and AMOLED output. V2 photos show its touch-controlled SquareLine/LVGL result list, and a fresh isolated build verified the preserved package using the documented command and dependencies. This supports a reproducible watch subsystem, not connection to the rover, a survey map or summary, anomaly indications, delivery within 5 s, or the full integrated build. Its 93\% program-partition use also leaves limited margin for the final interface. Research still shows that the BME688 cannot certify safety, the tracked tank is unproven for mapping, and the Pi Zero 2 W architecture is unselected.
+The evidence supports a \textbf{preliminary proceed-with-conditions} position. Physical V1/V2 watch results (L-06), the user-reported standalone watch photo display (L-08), the reported rover drive beyond 2 m, and the laptop-to-phone video record show useful subsystems. Ten synthetic simulation tests support the REQ-RS-03--05 software logic. None passes the full physical acceptance conditions: operator position and calibrated path, Pi/rover camera latency, real tagged sensor/map readings, five physical mapping runs, final watch map/summary/anomaly, and 5 s delivery remain open. All \texttt{src/} code is PoC. The final custom PCB and full integrated clean-copy build also remain open.
 
-The conditions are to implement and test the survey map, summary, and anomaly screens and transfer; measure watch delivery and video latency together; manage watch program size; and verify the full integrated clean-copy one-command build. The project must also fix and log the concept-selection criteria and weights, score the two architectures, select the controller structure, bench-test the BME688, measure mapping accuracy, and calculate the power/current budget. Until those steps are complete, every performance requirement remains open or partly supported.
+Before the next gate, record those physical tests and conditions, then fix and log concept criteria/weights and score the alternatives; complete the $p\times c$ risk matrix; test the selected BME680/BME688 baseline, power budget, and integrated software build. These gaps prevent a claim of complete feasibility today.
 
 \begin{thebibliography}{9}
 \small

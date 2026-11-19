@@ -74,6 +74,10 @@ The following should not be assumed without a new decision and supporting tests:
 
 ## Current Project Scope
 
+- 2026-11-19 — The user clarified that all code under `src/` is proof-of-concept
+  work, not the final integrated system. Preserve `REQ-RS-01` through
+  `REQ-RS-08`, the exact Waveshare watch as the map output, and the final custom
+  PCB requirement when evaluating or extending these prototypes.
 - Remotely operated mobile unit surveys one unfamiliar enclosed room.
 - Phone is intended for drive commands and live video.
 - Rover is intended to perform motion, environmental sensing, mapping, and survey-record generation.

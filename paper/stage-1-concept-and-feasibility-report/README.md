@@ -12,10 +12,10 @@ regenerate and inspect `main.pdf` to confirm that it matches the latest source,
 fits the required three-to-four-page limit, and remains legible when printed in
 black and white.
 
-Its watch evidence scope includes the measured Version 1 basic Wi-Fi
-scan/display test and the measured Version 2 touch-controlled SquareLine/LVGL
-scan interface shown in the preserved physical-watch photos. The packaged V2
-subsystem also passed a fresh isolated Arduino CLI build using the documented
-board target, dependencies, and command. These results do not prove rover
-communication, map/summary/anomaly transfer, the five-second delivery target,
-or the clean one-command build of the full integrated system.
+The November 19 draft includes the measured Version 1/2 watch Wi-Fi and UI
+tests, user-reported standalone watch photo display, user-reported rover travel
+beyond 2 m, and laptop/desktop-to-phone live video. It also records the ten
+passing synthetic tests for REQ-RS-03 through REQ-RS-05. All repository
+`src/` code is proof-of-concept work. The exact physical acceptance tests,
+final watch map/summary/anomaly display, custom PCB, and full integrated
+clean-copy build remain open.
