@@ -1,0 +1,15 @@
+{
+  "baseline": 100.0,
+  "evidence_class": "synthetic software boundary test",
+  "outputs": [
+    "sim_req_rs_04_threshold.csv",
+    "sim_req_rs_04_threshold.png"
+  ],
+  "physical_requirement": "OPEN - physical test not performed",
+  "requirement": "REQ-RS-04",
+  "score_124_flagged": false,
+  "score_125_flagged": true,
+  "simulation_check": "PASS",
+  "statement": "The comparator handled the synthetic 124/125 boundary correctly; sensor baseline stability and physical air response were not tested.",
+  "threshold": 125.0
+}

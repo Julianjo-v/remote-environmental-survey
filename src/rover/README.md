@@ -1,8 +1,5 @@
 # Rover Source Code
 
-No rover source code is present yet.
+- [`version-2-mapping-wifi-control/`](version-2-mapping-wifi-control/README.md) contains the user's phone-controlled ESP32 two-motor rover sketch and its evidence boundary.
 
-This directory is reserved for future motion control, sensors, mapping, camera,
-power-management interfaces, and rover-to-watch communication code. Planned
-features must not be described as implemented or tested until source and
-evidence are added.
+Sensor readings, measured mapping accuracy, camera integration, and rover-to-watch survey delivery remain future integrated tests. See the version folder before treating its source as proof of a requirement.

@@ -1,0 +1,12 @@
+{
+  "evidence_class": "synthetic software test",
+  "outputs": [
+    "sim_req_rs_03_records.csv",
+    "sim_req_rs_03_map.png"
+  ],
+  "physical_requirement": "OPEN - physical test not performed",
+  "record_count": 3,
+  "requirement": "REQ-RS-03",
+  "simulation_check": "PASS",
+  "statement": "The software represented three valid synthetic environmental records; no physical sensor or rover location was tested."
+}

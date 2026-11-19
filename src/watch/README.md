@@ -1,8 +1,8 @@
 # Watch Source Code
 
-This directory contains two preserved watch prototypes for the required
-Waveshare ESP32-S3-Touch-AMOLED-2.06. Version 2 supplements Version 1; it does
-not overwrite or silently redefine the earlier evidence.
+This directory contains three preserved watch prototypes for the required
+Waveshare ESP32-S3-Touch-AMOLED-2.06. Each version supplements the earlier
+tests without silently redefining their evidence.
 
 ## Version 1: basic Wi-Fi scanner
 
@@ -37,6 +37,12 @@ not overwrite or silently redefine the earlier evidence.
   bytes. The 1,223,712-byte binary SHA-256 is
   `0BB18CE51CBFF62930D69B09DE29FA36F207B979F052ED6290AAF53D2D5C6CB5`.
 
-Both versions are watch-subsystem evidence only. The final rover connection,
+## Version 3: standalone phone photo upload
+
+- [`version-3-phone-photo-upload-test/`](version-3-phone-photo-upload-test/README.md) contains a watch-hosted Wi-Fi photo-transfer test and a sample photo.
+- The user reported that the original local sketch displayed a phone-uploaded photo on the physical watch on 2026-11-13. The repository copy replaces the fixed demonstration AP password with a placeholder and compiled successfully; it has not itself been reflashed and retested.
+- This is image-transfer subsystem evidence. It does not demonstrate a completed rover survey summary or five-second delivery.
+
+These versions are watch-subsystem evidence only. The final rover connection,
 survey-summary transfer, map display, anomaly display, five-second delivery,
 and clean one-command build of the integrated system remain unfinished.

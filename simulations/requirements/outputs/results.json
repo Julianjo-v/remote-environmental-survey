@@ -1,0 +1,57 @@
+{
+  "notice": "SIMULATION - NOT BENCH EVIDENCE",
+  "purpose": "Verify software data flow, calculations, and pass/fail logic",
+  "results": {
+    "REQ-RS-03": {
+      "evidence_class": "synthetic software test",
+      "outputs": [
+        "sim_req_rs_03_records.csv",
+        "sim_req_rs_03_map.png",
+        "sim_req_rs_03_result.json"
+      ],
+      "physical_requirement": "OPEN - physical test not performed",
+      "record_count": 3,
+      "requirement": "REQ-RS-03",
+      "simulation_check": "PASS",
+      "statement": "The software represented three valid synthetic environmental records; no physical sensor or rover location was tested."
+    },
+    "REQ-RS-04": {
+      "baseline": 100.0,
+      "evidence_class": "synthetic software boundary test",
+      "outputs": [
+        "sim_req_rs_04_threshold.csv",
+        "sim_req_rs_04_threshold.png",
+        "sim_req_rs_04_result.json"
+      ],
+      "physical_requirement": "OPEN - physical test not performed",
+      "requirement": "REQ-RS-04",
+      "score_124_flagged": false,
+      "score_125_flagged": true,
+      "simulation_check": "PASS",
+      "statement": "The comparator handled the synthetic 124/125 boundary correctly; sensor baseline stability and physical air response were not tested.",
+      "threshold": 125.0
+    },
+    "REQ-RS-05": {
+      "evidence_class": "synthetic acceptance-scoring test",
+      "outputs": [
+        "sim_req_rs_05_point_errors.csv",
+        "sim_req_rs_05_run_summary.csv",
+        "sim_req_rs_05_mapping.png",
+        "sim_req_rs_05_result.json"
+      ],
+      "passing_runs": 4,
+      "physical_requirement": "OPEN - physical rover test not performed",
+      "required_passing_runs": 4,
+      "requirement": "REQ-RS-05",
+      "run_maximum_errors_cm": [
+        4.472,
+        6.325,
+        8.544,
+        9.055,
+        12.0
+      ],
+      "simulation_check": "PASS",
+      "statement": "The scoring software classified four of five synthetic runs as passing; no physical wall, range sensor, odometry, or rover run was tested."
+    }
+  }
+}

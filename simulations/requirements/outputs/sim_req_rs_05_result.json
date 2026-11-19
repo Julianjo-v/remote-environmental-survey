@@ -1,0 +1,21 @@
+{
+  "evidence_class": "synthetic acceptance-scoring test",
+  "outputs": [
+    "sim_req_rs_05_point_errors.csv",
+    "sim_req_rs_05_run_summary.csv",
+    "sim_req_rs_05_mapping.png"
+  ],
+  "passing_runs": 4,
+  "physical_requirement": "OPEN - physical rover test not performed",
+  "required_passing_runs": 4,
+  "requirement": "REQ-RS-05",
+  "run_maximum_errors_cm": [
+    4.472,
+    6.325,
+    8.544,
+    9.055,
+    12.0
+  ],
+  "simulation_check": "PASS",
+  "statement": "The scoring software classified four of five synthetic runs as passing; no physical wall, range sensor, odometry, or rover run was tested."
+}

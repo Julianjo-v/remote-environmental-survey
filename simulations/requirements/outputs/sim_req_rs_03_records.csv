@@ -1,0 +1,4 @@
+location_id,x_m,y_m,temperature_c,humidity_percent,relative_gas_score
+P1,0.8,1.1,21.7,43.0,100.0
+P2,2.0,2.7,22.1,45.2,112.0
+P3,3.4,1.8,22.6,47.0,132.0
