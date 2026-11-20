@@ -74,6 +74,12 @@ The following should not be assumed without a new decision and supporting tests:
 
 ## Current Project Scope
 
+- 2026-11-20 — The user confirmed the provisional Concept B comparison and
+  risk ranking for planning. Work on the largest uncertainties first: physical
+  relative-gas sensing and mapping accuracy, then integration and transfer;
+  refine the watch UI last. This sequence does not pass any physical acceptance
+  test or finalize the architecture. Exact dates and the BOM/cost are not yet
+  finalized.
 - 2026-11-19 — The user clarified that all code under `src/` is proof-of-concept
   work, not the final integrated system. Preserve `REQ-RS-01` through
   `REQ-RS-08`, the exact Waveshare watch as the map output, and the final custom
