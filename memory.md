@@ -1,6 +1,6 @@
 # Project Memory
 
-Last updated: 2026-10-31
+Last updated: 2026-11-20
 
 ## Project
 
@@ -131,8 +131,66 @@ The following should not be assumed without a new decision and supporting tests:
   112,992 bytes (34 percent), and 214,688 bytes remained for local variables.
 - Hidden nonbroadcast SSIDs correctly appear as `<hidden>`; a passive scan
   cannot recover a network name that the access point omits.
-- The final rover link, map, summary, anomaly indication, five-second transfer,
-  and full integrated REQ-RS-08 build remain open.
+- 2026-11-13 — For `REQ-RS-01`, the user reports that a two-motor rover using
+  encoder-equipped N20 motors and ESP32 control worked from a phone over Wi-Fi.
+  The report does not yet establish a documented 2 m path with the operator
+  outside the room, so the exact acceptance test remains open.
+- 2026-11-13 — `REQ-RS-02` Raspberry Pi-to-phone live video is still being
+  developed. A timed test against the 1 s latency limit has not been reported.
+- 2026-11-19 — The user reports driving the ESP32 rover farther than 2 m with
+  the `sketch_oct31b` mapping-and-wireless-control sketch. The distance has not
+  been documented by a measurement record, and operator position outside the
+  room was not confirmed; the full `REQ-RS-01` acceptance test remains open.
+- 2026-11-19 — The user reports live camera video displayed on a phone using
+  the Flask/OpenCV stream running on a laptop or desktop, with a phone screenshot
+  supplied as evidence. Operation from the planned Raspberry Pi Zero 2 W and
+  camera-to-phone latency at or below 1 s have not been measured; `REQ-RS-02`
+  remains open for its complete acceptance test.
+- 2026-11-13 — The user is reviewing the Python simulations for `REQ-RS-03`
+  through `REQ-RS-05`. Integrated sensing and physical mapping tests remain
+  open. The user plans to work on `REQ-RS-06` summary delivery after confirming
+  the simulations; the 5 s watch delivery test is still open.
+- 2026-11-13 — The user reports that the standalone
+  `SEM 5 PROJECT/watch_photo_upload_test/watch_photo_upload_test.ino` worked
+  on the physical watch: a phone joined the watch-hosted Wi-Fi, uploaded a
+  photo, and the watch displayed it. This is a phone-to-watch image-transfer
+  subsystem milestone. The later SquareLine3 integration was also tested on
+  the watch per the user's 2026-11-20 clarification; the `REQ-RS-06` 5 s
+  survey-delivery test remains open.
+- 2026-11-17 — The local integrated photo-upload firmware at
+  `SEM 5 PROJECT/square_line3/square_line3.ino` compiled successfully using
+  ESP32 core 3.3.6, ESP32S3 board, 32 MB flash, Huge APP partition, and OPI
+  PSRAM. The build used 1,528,911 bytes of program storage (48% of the 3 MB
+  app partition) and 52,528 bytes of global memory (16%). The user later
+  confirmed a physical flash and phone image upload/display within this
+  combined watch UI. This still does not pass `REQ-RS-06`, `REQ-RS-08`, or the
+  full map-and-survey-display scope of `REQ-RS-09`.
+- 2026-11-20 — In clarifying `C8`, the user confirmed that seven public BME688
+  project pages were reviewed only; no external code, data set, or published
+  result was run or reproduced. This is scoped literature review evidence,
+  not proof that no suitable public data set exists.
+- 2026-11-20 — In clarifying `C9` and `C11`, the user reported a run of a
+  repurposed wheeled project-box ESP32 rover: phone Wi-Fi commands controlled
+  movement and a live map updated on the same phone. Three front ToF sensors
+  and encoder-equipped N20 motors were installed; the user says sensor
+  readings, not encoder readings, drove the map. No wall or obstacle positions
+  were checked against tape measurements. The planned tracked tank chassis
+  and the `REQ-RS-05` accuracy test remain unverified.
+- 2026-11-20 — The laptop/desktop-to-phone live camera test and the
+  phone-to-watch image-upload/display test were separate from the rover run.
+  The user confirms that the combined SquareLine3 UI was flashed to the
+  physical watch and successfully displayed an uploaded phone image. No
+  Raspberry Pi Zero 2 W test or integrated rover-to-watch map/summary test
+  was reported; `REQ-RS-02`, `REQ-RS-06`, and the full `REQ-RS-09` acceptance
+  tests remain open.
+- The final integrated rover link, map, summary, anomaly indication,
+  five-second transfer, and full integrated REQ-RS-08 build remain open.
+- 2026-11-13 — The deterministic Python package in
+  `simulations/requirements/` generated reproducible CSV, JSON, and PNG outputs
+  for `REQ-RS-03` through `REQ-RS-05`, and all 10 unit tests passed. This is
+  verified software-only evidence for the map-record schema, anomaly-threshold
+  boundary, and mapping-error calculations; it is not physical rover or sensor
+  evidence, so all three requirements remain open pending hardware tests.
 - No requirement should be marked passed until its planned test is performed and documented.
 
 ## Verified Repository Milestones
@@ -210,6 +268,35 @@ The following should not be assumed without a new decision and supporting tests:
   updated. This was an organization-only change with no firmware-content change
   or new build claim. The remote tag `v1.0.0-stage1` remains unchanged at
   `f6d8f99445f569d698d6b160f4b7fc17349e9e61`.
+- 2026-11-19 — The GITHUB REPO agent verified that commit
+  `e0616c175915e098b4b2d395cbbe96ec130066ed` was pushed to `origin/main`.
+  It adds the dated laptop-to-phone camera script and screenshot, the
+  `REQ-RS-03`–`REQ-RS-05` synthetic simulation package and outputs, and scoped
+  rover V2 and standalone watch V3 source with documentation. All 10 simulation
+  tests passed. The rover sketch built with ESP32 core 3.3.6 (990,415 bytes
+  program; 49,432 bytes globals), and the watch sketch built for ESP32-S3
+  (1,022,327 bytes program; 46,832 bytes globals). The repository sketch copies
+  replace local test access-point passwords with placeholders, so they are not
+  byte-identical to the tested local sources. Reported drive and video results
+  remain subsystem evidence; the camera latency and Raspberry Pi path,
+  physical `REQ-RS-03`–`REQ-RS-05` results, complete watch summary, and full
+  integrated build remain open.
+- 2026-11-19 — The GITHUB REPO agent pushed and remotely verified commit
+  `c98bbdfe78c0e88ec02a8275fc47f392d99d9b75` on `origin/main`. It updates
+  the four-page Stage 1 Concept and Feasibility Report and clarifies that all
+  `src/` code is proof-of-concept work, not a final integrated implementation.
+- 2026-11-19 — The GITHUB REPO agent pushed and remotely verified commit
+  `a4b104b3daa4f12d94c322ede5a113b75cc47587` on `origin/main`. It contains
+  the scoped Stage 1 report refinement and project-memory update; the revised
+  PDF compiled to four pages.
+- 2026-11-20 — User-authorized append-only logbook entry L-09 fixed weighted
+  concept criteria before scoring and recorded provisional risk estimates. The
+  Stage 1 report now compares centralized A (3.15) with divided B (3.50),
+  provisionally favors B, and includes a ranked risk matrix; the scores are
+  planning judgments, not measured results or a final architecture decision.
+  Its PDF compiled to four pages. The GITHUB REPO agent pushed and remotely
+  verified commit `2367c3353815a4299a9ee2e5e39aaa382e1244e9` on
+  `origin/main`. Physical acceptance tests remain open.
 
 ## Stage 1 Concept and Feasibility Report Guide
 
