@@ -74,6 +74,12 @@ The following should not be assumed without a new decision and supporting tests:
 
 ## Current Project Scope
 
+- 2026-11-20 — Gate 2 is next. The user expects Friday work sessions after
+  November 20 and says school ends December 10, 2026; exact session dates are
+  tentative. Before then, the realistic test targets are relative-gas sensing
+  and mapping with the existing wheeled rover. Other acceptance checks are
+  planned later, with watch UI refinement last. No new requirement pass is
+  implied by this schedule.
 - 2026-11-20 — The user confirmed the provisional Concept B comparison and
   risk ranking for planning. Work on the largest uncertainties first: physical
   relative-gas sensing and mapping accuracy, then integration and transfer;
