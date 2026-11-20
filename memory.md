@@ -319,6 +319,10 @@ The following should not be assumed without a new decision and supporting tests:
 - 2026-11-20 — The GITHUB REPO agent pushed and remotely verified commit
   `408514d751ec69bc2b14d0a0e0a6f5f5f716e04f` on `origin/main`. It contains
   only the Stage 1 report source, its valid four-page PDF, and project memory.
+- 2026-11-20 — The GITHUB REPO agent pushed and remotely verified commit
+  `61638ed9b403ee1dee279e1e3507308acc23a564` on `origin/main`. It contains
+  only project memory and the Stage 1 report source and valid four-page PDF;
+  the report references the tentative Gate 2 schedule recorded in L-12.
 
 ## Stage 1 Concept and Feasibility Report Guide
 
