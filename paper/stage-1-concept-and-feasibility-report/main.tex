@@ -22,7 +22,7 @@
 \begin{center}
 {\Large\bfseries Remote Environmental Survey and Mapping of an Unseen Room}\\[4pt]
 Julian Joseph Amaro \quad Project I (247-519-VA) \quad Vanier College\\
-November 19, 2026
+November 20, 2026
 \end{center}
 
 \section*{1. Change Log}
@@ -43,36 +43,32 @@ A Raspberry Pi Zero 2 W and a 3D-printed tracked tank are candidate components o
 
 \section*{2. Concept Alternatives}
 
-Two genuinely different control approaches are under consideration.
+Two approaches differ in where time-sensitive control runs. In A, one computer handles video, mapping, sensing, and motor timing. In B, a separate controller handles motors and encoders while the main computer handles video, mapping, storage, and survey transfer.
 
-\begin{tabularx}{\linewidth}{>{\bfseries}p{0.08\linewidth}X X}
+\begin{tabularx}{\linewidth}{X>{\centering\arraybackslash}p{0.10\linewidth}>{\centering\arraybackslash}p{0.12\linewidth}>{\centering\arraybackslash}p{0.12\linewidth}}
 \toprule
- & \textbf{Alternative A: centralized control} & \textbf{Alternative B: divided control} \\
+\textbf{Criterion (1--5; higher is better)} & \textbf{Weight} & \textbf{A} & \textbf{B} \\
 \midrule
-Method & One main computer coordinates video, mapping, sensing, communications, and motor commands through a motor driver. & A main computer handles video, mapping, storage, and communications, while a microcontroller handles motors, encoders, and time-sensitive sensor input. \\
-Main uncertainty & Whether one processor and operating system can provide sufficiently predictable motor, encoder, video, and mapping behaviour together. & Whether the extra controller, firmware, interfaces, and synchronization are justified by improved real-time control. \\
-Current status & Not scored; Raspberry Pi Zero 2 W remains a candidate. & Not scored; the microcontroller and interface are not selected. \\
+Requirement coverage & 0.35 & 3 & 4 \\
+Motor/encoder timing and mapping risk & 0.25 & 2 & 4 \\
+Project I buildability and obtainable evidence & 0.20 & 4 & 3 \\
+Power and integration simplicity & 0.10 & 4 & 2 \\
+Cost headroom & 0.10 & 4 & 3 \\
+\midrule
+\textbf{Weighted total} & \textbf{1.00} & \textbf{3.15} & \textbf{3.50} \\
 \bottomrule
 \end{tabularx}
 
-The evaluation criteria and weights must be chosen and dated in the logbook before either alternative is scored. Likely criteria include requirement coverage, mapping risk, real-time control, implementation effort, power demand, integration complexity, and evidence obtainable during Project I. No winner is claimed yet.
+\textbf{Provisional choice: B.} Its separation of motor timing from video/map processing reduces a key risk; the phone-controlled ESP32 rover and separate video PoCs support exploring it. A loses on timing; B loses on simplicity and cost and remains unverified as an integrated system. The five weights and 1--5 rubric were fixed in the dated L-09 record before this finalized comparison. The scores are engineering judgments, not measured performance, and need review after integration tests.
 
-\textbf{Functional flow under investigation:}
-
+\textbf{Functional blocks for provisional B:}
 \begin{center}
-\fbox{Remote command / live view}
-$\longleftrightarrow$
-\fbox{Motion and position estimation}
-$\longrightarrow$
-\fbox{Environmental sensing}\\[4pt]
-$\longrightarrow$
-\fbox{Map and tagged-record generation}
-$\longrightarrow$
-\fbox{Compact summary transfer}
-$\longrightarrow$
-\fbox{Watch display}
+\fbox{Phone command} $\longrightarrow$ \fbox{Motion/encoder control} $\longrightarrow$ \fbox{Rover motion}\\[3pt]
+\fbox{Camera, range, environment} $\longrightarrow$ \fbox{Video/map processing} $\longrightarrow$ \fbox{Phone view}\\[3pt]
+\fbox{Map and tagged readings} $\longrightarrow$ \fbox{Summary transfer} $\longrightarrow$ \fbox{Watch display}
 \end{center}
 
+\newpage
 \section*{3. Feasibility Case}
 
 Claims begin at C6 because C1--C5 already identify watch constraints in the frozen proposal.
@@ -87,9 +83,12 @@ C8 & RS-04 & Public BME688 projects demonstrate logging and experimental classif
 C9 & RS-05 & The tracked tank may provide a mechanical base, but its encoder integration, payload capacity, track slip, and mapping accuracy are not established for this project. & Documented/inferred; L-02 & \openstatus \\
 C10 & RS-01, RS-02, RS-05 & A Pi Zero 2 W may be able to handle video and mapping, but processor load, thermal behaviour, motor-control timing, and power demand have not been calculated or measured for the final architecture. & Assumed; planned calculation and test & \openstatus \\
 C11 & RS-01--RS-10 & The full rover--watch system can meet the complete requirement set; no integrated acceptance test exists yet. & Assumed; integrated tests pending & \openstatus \\
-C12 & RS-01 & User reports an ESP32/N20 rover drove farther than 2 m by phone Wi-Fi using \texttt{sketch\_oct31b}. The redacted repository copy compiled; calibrated distance record and outside-room operator position are absent. & Reported physical PoC; repository build; rover V2 record & \partialstatus \\
-C13 & RS-02 & User reports a live laptop/desktop camera feed on a phone; a phone-browser screenshot and Flask/OpenCV source are preserved. A still frame cannot establish motion or delay. Raspberry Pi operation and $\leq$1 s latency are untested. & Reported physical PoC; screenshot/source, camera evidence dated Nov. 19 & \partialstatus \\
-C14 & RS-03--RS-05 & Python simulations generate three synthetic tagged readings, distinguish 124 from 125 at baseline 100, and score eight wall points across five synthetic runs. All 10 software tests passed. No physical sensor or mapping result follows. & Calculated/simulated; simulation package README and outputs & \partialstatus \\
+C12 & RS-01 & User reports an ESP32/N20 rover drove farther than 2 m by phone Wi-Fi using \texttt{sketch\_oct31b}. The redacted repository copy compiled; calibrated distance record and outside-room operator position are absent. & Reported physical PoC; L-09; dated rover V2 record & \partialstatus \\
+C13 & RS-02 & User reports a live laptop/desktop camera feed on a phone; a phone-browser screenshot and Flask/OpenCV source are preserved. A still frame cannot establish motion or delay. Raspberry Pi operation and $\leq$1 s latency are untested. & Reported physical PoC; L-09; Nov. 19 camera record & \partialstatus \\
+C14 & RS-03--RS-05 & Python simulations generate three synthetic tagged readings, distinguish 124 from 125 at baseline 100, and score eight wall points across five synthetic runs. All 10 software tests passed. No physical sensor or mapping result follows. & Calculated/simulated; L-09; simulation outputs & \partialstatus \\
+C15 & RS-07 & A provisional CAD \$675 parts estimate leaves no verified margin after tax, shipping, and changes. Itemized final receipts are absent. & Calculated estimate; L-03.1 & \openstatus \\
+C16 & RS-08 & Separate watch and rover PoC builds passed, but no second computer built the integrated firmware from a clean copy with one command. & Measured builds; L-06, repository build records & \partialstatus \\
+C17 & RS-10 & The final custom PCB is a binding plan, not a fabricated or tested board. & Assumed; proposal and L-02 & \openstatus \\
 \bottomrule
 \end{tabularx}
 
@@ -107,34 +106,53 @@ REQ-RS-03 & Map at least three tagged temperature, humidity, and relative-gas re
 REQ-RS-04 & Flag a potential anomaly at 125\% or more of baseline; this is a relative indicator, not a safety limit. & Partly supported: synthetic 124/125 boundary passed; sensor and integrated alarm open. \\
 REQ-RS-05 & Map walls within $\pm$10 cm in at least four of five runs; preserves the proposal accuracy target. & Partly supported: synthetic scoring passed; eight-point physical comparison across five runs open. \\
 REQ-RS-06 & Deliver the completed summary to the watch within 5 s; provides portable results. & Partly supported: standalone photo transfer reported; rover summary and timing open. \\
-REQ-RS-07 & Keep total hardware cost at or below CAD \$700; stakeholder constraint N7. & Open: cost work is separate and excluded here. \\
+REQ-RS-07 & Keep total hardware cost at or below CAD \$700; stakeholder constraint N7. & Open: CAD \$675 estimate is provisional; final cost proof open. \\
 REQ-RS-08 & Build firmware from a clean copy using one documented command; supports reproducibility. & Partly supported: PoC builds passed separately; full integrated clean-copy build open. \\
 REQ-RS-09 & Use the exact Waveshare watch to display the map, summary, and anomaly indications. & Partly supported: Wi-Fi/UI and standalone photo display observed; final content and transfer open. \\
 REQ-RS-10 & Include a custom PCB in the final system; breadboard/modules alone are insufficient for the final build. & Open: binding plan; PCB not yet designed or built. \\
 \bottomrule
 \end{tabularx}
 
+\newpage
 \section*{5. Risk Register}
 
-These risks have changed with the new PoC evidence, but probability/consequence scores were not predeclared or logged. The required $P=p\times c$ ranking and matrix remain an explicit Gate 1 gap.
+Priority estimates use L-09's 1--4 probability ($p$) and consequence ($c$) indices; $P=p\times c$. These are provisional judgments, not observed failure frequencies. R1--R3 continue the proposal's IDs; R4--R5 arose during controller and watch PoCs.
 
-\begin{tabularx}{\linewidth}{>{\bfseries}p{0.06\linewidth}X X}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{0.07\linewidth}Xcccc}
 \toprule
-ID & \textbf{Risk, assumption, and consequence} & \textbf{Evidence needed and mitigation} \\
+ID & \textbf{Risk} & $p$ & $c$ & $P$ & \textbf{Rank} \\
 \midrule
-R1 & Wheel slip and range noise may exceed the 10 cm error limit. Assumes odometry and ranging remain repeatable on the selected chassis. Failure would make wall and reading locations unreliable. & Five mapping runs against eight tape-measured points. Calibrate geometry, reduce speed, add encoders/ranging, or change mapping method. \\
-R2 & BME688 response may drift with humidity or be too slow for brief stops. Assumes a stable relative baseline. Failure could produce misleading anomaly indications. & Controlled safe baseline, warm-up, humidity, dwell-time, and repeatability tests. Keep claims relative and change the sensor or sampling method if needed. \\
-R3 & Doorway wireless traffic may delay phone video or the watch summary. A laptop-to-phone feed and watch PoC transfer were reported separately; rover/Pi video and simultaneous watch delivery are untested. Failure would affect REQ-RS-02 and REQ-RS-06. & Measure video latency and summary delivery together across the doorway; then reduce data rate, buffer/resend, or test a phone-mediated path. \\
-R4 & The selected controller architecture may not meet processing, timing, thermal, or power needs. & Calculate the power/load budget and prototype the two highest-load functions before selection. Use divided control if centralized timing is inadequate. \\
-R5 & The final watch UI may exceed screen or program limits. V2 supports scrolling but uses 93\% of its selected app partition; a standalone V3 photo build used a different, larger partition. Neither demonstrates the final survey layout. & Flash and test combined map, summary, and anomaly screens; track app size under one stated partition plan and simplify assets if needed. \\
+R1 & Wall error from slip/range noise & 3 & 4 & 12 & 1= \\
+R3 & Video or watch delivery delayed by wireless traffic & 3 & 4 & 12 & 1= \\
+R2 & Relative-gas baseline drift or slow response & 3 & 3 & 9 & 3 \\
+R4 & Controller load, timing, or power exceeds budget & 2 & 3 & 6 & 4 \\
+R5 & Final watch UI exceeds display/app limits & 2 & 2 & 4 & 5 \\
 \bottomrule
 \end{tabularx}
+
+\begin{center}
+\textbf{Risk matrix: $P=p\times c$ (IDs show estimated positions)}\\[-2pt]
+\begin{tabular}{c|cccc}
+ & $c=1$ & $c=2$ & $c=3$ & $c=4$ \\
+\hline
+$p=4$ & 4 & 8 & 12 & 16 \\
+$p=3$ & 3 & 6 & 9 (R2) & 12 (R1, R3) \\
+$p=2$ & 2 & 4 (R5) & 6 (R4) & 8 \\
+$p=1$ & 1 & 2 & 3 & 4
+\end{tabular}
+\end{center}
+
+\textbf{R1, tied highest.} \textbf{Statement:} slip/range noise may exceed $\pm$10 cm. \textbf{Assumption:} odometry and ranging are repeatable. \textbf{Consequence:} REQ-RS-05 fails and mapped locations mislead. \textbf{Probability:} $p=3$, judged likely because no physical accuracy run exists. \textbf{Evidence:} planned: eight tape-measured wall points in each of five runs. \textbf{Mitigation:} calibrate geometry, slow the rover, combine encoder/range data, or revise the mapping method.
+
+\textbf{R3, tied highest.} \textbf{Statement:} concurrent traffic may delay phone video or watch summary. \textbf{Assumption:} both links meet the 1 s and 5 s limits together. \textbf{Consequence:} REQ-RS-02/06 fail. \textbf{Probability:} $p=3$, judged likely while only separate PoCs exist. \textbf{Evidence:} planned: timed concurrent doorway video and summary trials. \textbf{Mitigation:} reduce data rate, buffer/retry, or test another link.
+
+R2 needs safe baseline, humidity, dwell-time, and repeatability tests; change sampling or sensor if unstable. R4 needs load/power measurements; divide control if needed. R5 needs the final survey UI build and flash test; V2 used 93\% of its selected app partition, while V3 used another partition.
 
 \section*{6. Gate 1 Readiness}
 
 The evidence supports a \textbf{preliminary proceed-with-conditions} position. Physical V1/V2 watch results (L-06), the user-reported standalone watch photo display (L-08), the reported rover drive beyond 2 m, and the laptop-to-phone video record show useful subsystems. Ten synthetic simulation tests support the REQ-RS-03--05 software logic. None passes the full physical acceptance conditions: operator position and calibrated path, Pi/rover camera latency, real tagged sensor/map readings, five physical mapping runs, final watch map/summary/anomaly, and 5 s delivery remain open. All \texttt{src/} code is PoC. The final custom PCB and full integrated clean-copy build also remain open.
 
-Before the next gate, record those physical tests and conditions, then fix and log concept criteria/weights and score the alternatives; complete the $p\times c$ risk matrix; test the selected BME680/BME688 baseline, power budget, and integrated software build. These gaps prevent a claim of complete feasibility today.
+Before the next gate, document the physical acceptance trials, test the selected BME680/BME688 baseline, measure the power budget, and build the integrated system from a clean copy. Revisit the L-09 concept scores and risk estimates after those tests. These gaps prevent a claim of complete feasibility today.
 
 \begin{thebibliography}{9}
 \small
