@@ -297,6 +297,13 @@ The following should not be assumed without a new decision and supporting tests:
   Its PDF compiled to four pages. The GITHUB REPO agent pushed and remotely
   verified commit `2367c3353815a4299a9ee2e5e39aaa382e1244e9` on
   `origin/main`. Physical acceptance tests remain open.
+- 2026-11-20 — The GITHUB REPO agent pushed and remotely verified commit
+  `e272a74ea2c381fe7374f1f8634f7c74e4a1cc69` on `origin/main`. It contains
+  the updated project memory and Stage 1 report source and four-page PDF. The
+  report now scopes claims C8–C11 to the user's clarified prototype evidence.
+  Append-only logbook entry L-10 is stored in the shared
+  `GAS ROBOT AGENTS/LOGBOOK.md` outside the repository, so it is not in this
+  commit. Physical acceptance tests remain open.
 
 ## Stage 1 Concept and Feasibility Report Guide
 
