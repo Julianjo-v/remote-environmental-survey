@@ -1,35 +1,27 @@
-\documentclass[10pt,letterpaper]{article}
+\documentclass[conference,onecolumn,letterpaper]{IEEEtran}
 
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage[margin=0.60in]{geometry}
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
 
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{3pt}
 \setlist[itemize]{leftmargin=1.25em,itemsep=1pt,topsep=2pt}
 \renewcommand{\arraystretch}{1.12}
 \newcommand{\openstatus}{\textbf{Open}}
 \newcommand{\partialstatus}{\textbf{Partly supported}}
 
+\title{Remote Environmental Survey and Mapping of an Unseen Room}
+\author{\IEEEauthorblockN{Julian Joseph Amaro}\IEEEauthorblockA{Project I (247-519-VA), Vanier College\\November 20, 2026}}
 \begin{document}
-\small
+\maketitle
 
-\begin{center}
-{\Large\bfseries Remote Environmental Survey and Mapping of an Unseen Room}\\[4pt]
-Julian Joseph Amaro \quad Project I (247-519-VA) \quad Vanier College\\
-November 20, 2026
-\end{center}
-
-\section*{1. Change Log}
+\section{Change Log}
 
 The submitted proposal remains the frozen baseline for needs N1--N8, watch constraints C1--C5, requirements REQ-RS-01--08, and risks R1--R3. It commits to watch survey output and custom rover hardware, with PCB design and manufacture in Project II. The new identifiers formalize those commitments; REQ-RS-09 also names the selected watch model explicitly.
 
-\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.16\linewidth}X>{\raggedright\arraybackslash}p{0.16\linewidth}}
+\noindent\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.16\linewidth}X>{\raggedright\arraybackslash}p{0.16\linewidth}}
 \toprule
 \textbf{Item} & \textbf{Change and reason} & \textbf{Record} \\
 \midrule
@@ -43,11 +35,11 @@ R5 & Added watch-UI limits risk after the display and touch PoCs; map transfer, 
 
 A Raspberry Pi Zero 2 W and a 3D-printed tracked tank are candidate components only. Neither is a frozen architecture decision or a verified compatible choice.
 
-\section*{2. Concept Alternatives}
+\section{Concept Alternatives}
 
 Two approaches differ in where time-sensitive control runs. In A, one computer handles video, mapping, sensing, and motor timing. In B, a separate controller handles motors and encoders while the main computer handles video, mapping, storage, and survey transfer.
 
-\begin{tabularx}{\linewidth}{X>{\centering\arraybackslash}p{0.10\linewidth}>{\centering\arraybackslash}p{0.12\linewidth}>{\centering\arraybackslash}p{0.12\linewidth}}
+\noindent\begin{tabularx}{\linewidth}{X>{\centering\arraybackslash}p{0.10\linewidth}>{\centering\arraybackslash}p{0.12\linewidth}>{\centering\arraybackslash}p{0.12\linewidth}}
 \toprule
 \textbf{Criterion (1--5; higher is better)} & \textbf{Weight} & \textbf{A} & \textbf{B} \\
 \midrule
@@ -71,12 +63,12 @@ Cost headroom & 0.10 & 4 & 3 \\
 \end{center}
 
 \newpage
-\section*{3. Feasibility Case}
+\section{Feasibility Case}
 
 Claims begin at C6 because C1--C5 already identify watch constraints in the frozen proposal. In the class column, measured refers to a physical test or build with its recorded setup, calculated includes synthetic simulation and estimates, and assumed covers untested suitability or integration. User-reported results have limited recorded conditions and do not prove missing acceptance conditions.
 
 \begingroup\footnotesize\renewcommand{\arraystretch}{1.04}
-\begin{tabularx}{\linewidth}{>{\bfseries}p{0.055\linewidth}>{\raggedright\arraybackslash}p{0.12\linewidth}X>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.12\linewidth}}
+\noindent\begin{tabularx}{\linewidth}{>{\bfseries}p{0.055\linewidth}>{\raggedright\arraybackslash}p{0.12\linewidth}X>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.12\linewidth}}
 \toprule
 ID & Tests & Claim and present evidence & Class / source & Status \\
 \midrule
@@ -98,9 +90,9 @@ C17 & RS-10 & The final custom PCB is a binding plan, not a fabricated or tested
 
 These PoC results support subsystem feasibility, not complete requirement compliance. Rover distance, its ToF-based live map, and the live feed are user-reported; the screenshot and code cannot establish missing acceptance conditions. Simulated 03--05 outputs are synthetic. No BME680/BME688 bench trial, tape-measured mapping-accuracy trial, Pi video-latency trial, rover-to-watch survey transfer, or full clean-copy integrated build has been documented.
 
-\section*{4. Baselined Requirements}
+\section{Baselined Requirements}
 
-\begin{tabularx}{\linewidth}{>{\bfseries}p{0.12\linewidth}X>{\raggedright\arraybackslash}p{0.18\linewidth}}
+\noindent\begin{tabularx}{\linewidth}{>{\bfseries}p{0.12\linewidth}X>{\raggedright\arraybackslash}p{0.18\linewidth}}
 \toprule
 \textbf{ID} & \textbf{Current requirement and reason} & \textbf{Status} \\
 \midrule
@@ -118,11 +110,11 @@ REQ-RS-10 & Include a custom PCB in the final system; breadboard/modules alone a
 \end{tabularx}
 
 \newpage
-\section*{5. Risk Register}
+\section{Risk Register}
 
 Priority estimates use L-09's 1--4 probability ($p$) and consequence ($c$) indices; $P=p\times c$. These are provisional judgments, not observed failure frequencies. R1--R3 continue the proposal's IDs; R4--R5 arose during controller and watch PoCs.
 
-\begin{tabularx}{\linewidth}{>{\bfseries}p{0.07\linewidth}Xcccc}
+\noindent\begin{tabularx}{\linewidth}{>{\bfseries}p{0.07\linewidth}Xcccc}
 \toprule
 ID & \textbf{Risk} & $p$ & $c$ & $P$ & \textbf{Rank} \\
 \midrule
@@ -152,7 +144,7 @@ $p=1$ & 1 & 2 & 3 & 4
 
 R2 needs safe baseline, humidity, dwell-time, and repeatability tests; change sampling or sensor if unstable. R4 needs load/power measurements; divide control if needed. R5 needs the final survey UI build and flash test; V2 used 93\% of its selected app partition, while V3 used another partition.
 
-\section*{6. Gate 1 Readiness}
+\section{Gate 1 Readiness}
 
 The evidence supports a \textbf{preliminary proceed-with-conditions} position. Physical V1/V2 watch results (L-06), user-reported photo display in SquareLine3 (L-10), phone drive with a ToF-based live map, and the separate laptop-to-phone video record show useful subsystems. Ten synthetic tests support the REQ-RS-03--05 software logic. None passes the full physical acceptance conditions: operator position and calibrated path, Pi/rover camera latency, real tagged environmental readings, five tape-measured mapping runs, final watch map/summary/anomaly, and 5 s delivery remain open. All \texttt{src/} code is PoC. The final custom PCB and full integrated clean-copy build also remain open.
 

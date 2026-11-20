@@ -326,6 +326,12 @@ The following should not be assumed without a new decision and supporting tests:
 
 ## Stage 1 Concept and Feasibility Report Guide
 
+- 2026-11-20 — The current report is
+  `paper/feasibility-report/feasibility-report.tex`, with the compiled
+  `feasibility-report.pdf` and adjacent `README.md`. At the user's request,
+  it uses IEEEtran conference formatting in one column. The four-page PDF
+  compiled and was visually checked. Earlier report paths in the repository
+  milestones above are historical.
 - 2026-11-19 — The Stage 1 report revision removed the optional Work in
   Progress subtitle, boxed Draft status, Change Log sentence about no new
   logbook entry, exact firmware build byte counts, and BOM-separate note. It

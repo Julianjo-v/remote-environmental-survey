@@ -34,8 +34,8 @@ the final custom-PCB requirement.
 - Version 1 remains preserved as the earlier basic scan/display test under
   [`src/watch/version-1-basic-wifi/`](src/watch/version-1-basic-wifi/).
 - The current Stage 1 Concept and Feasibility Report was compiled and verified
-  as a four-page PDF:
-  [report source and PDF](paper/stage-1-concept-and-feasibility-report/).
+  as a four-page PDF in one-column IEEEtran format:
+  [report source and PDF](paper/feasibility-report/).
 
 The V2 package, runtime photos, and subsystem build evidence are preserved.
 This does not prove the final survey interface or the clean build of the future
@@ -83,7 +83,7 @@ clean one-command build of the full integrated system.
 ## Repository structure
 
 - [`paper/`](paper/) — proposal material and the current Stage 1 report.
-- [`paper/stage-1-concept-and-feasibility-report/`](paper/stage-1-concept-and-feasibility-report/) — LaTeX source, verified four-page PDF, and report notes.
+- [`paper/feasibility-report/`](paper/feasibility-report/) — IEEEtran LaTeX source, verified four-page PDF, and report notes.
 - [`photos/`](photos/) — Version 1 and Version 2 watch research photos and explanation.
 - [`research/`](research/) — sources, research notes, and requirement tracking.
 - [`src/`](src/) — project source-code organization.
